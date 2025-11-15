@@ -1,6 +1,6 @@
-/* =========================================================
+/*
    🔹 1. ROOT VARIABLES — Main design variables (colors, shadows, transitions)
-========================================================= */
+*/
 :root {
     --primary-color: #8D6E63;
     --secondary-color: #5D4037;
@@ -14,16 +14,25 @@
     --transition: all 0.3s ease;
 }
 
-/* =========================================================
+/* 
    🔹 2. GLOBAL RESET — Reset default browser styles
-========================================================= */
+ */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-/* Colors, shadows, transitions, fonts */
+
+/*
+   🔹 3. BODY STYLING — General page background & layout
+*/
+body {
+    background: linear-gradient(to bottom right, #E0D8CC 0%, #90887E 65%, #50483E 100%);
+    color: var(--text-color);
+    min-height: 100vh;
+}
+
 
 /* ========== GLOBAL RESETS ========== */
 /* Reset margins, paddings, box-sizing */
