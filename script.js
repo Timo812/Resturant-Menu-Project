@@ -242,11 +242,12 @@ const searchRecommendationsContainer = document.getElementById('search-recommend
 const menuContainer = document.querySelector('.menu-container');
 const mainHeader = document.querySelector('.main-header'); // Added
 
-// ===================== INITIALIZATION ============
-// init()
-// - load default category
-// - setup all event listeners
-// - update order counter
+// Initialize the application
+function init() {
+    renderMenuItems('specials');
+    setupEventListeners();
+    updateOrderDisplay();
+}
 
 // ===================== RENDER FUNCTIONS ==========
 // renderMenuItems(category)
