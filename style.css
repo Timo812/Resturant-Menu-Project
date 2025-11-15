@@ -1,6 +1,3 @@
-/*
-   🔹 1. ROOT VARIABLES — Main design variables (colors, shadows, transitions)
-*/
 :root {
     --primary-color: #8D6E63;
     --secondary-color: #5D4037;
@@ -14,9 +11,6 @@
     --transition: all 0.3s ease;
 }
 
-/* 
-    GLOBAL RESET — Reset default browser styles
- */
 * {
     margin: 0;
     padding: 0;
@@ -24,26 +18,17 @@
     font-family: 'Poppins', sans-serif;
 }
 
-/*
-    BODY STYLING — General page background & layout
-*/
 body {
-    background: linear-gradient(to bottom right, #E0D8CC 0%, #90887E 65%, #50483E 100%);
+    background: linear-gradient(to bottom right, #E0D8CC 0%, #90887E 65%, #50483E 100%); /* Three-color gradient with even more contrast */
     color: var(--text-color);
-    min-height: 100vh;
+    min-height: 100vh; /* Ensure body takes full viewport height */
 }
 
-/* 
-     APP CONTAINER — Main application wrapper
-*/
 .app-container {
     display: block;
     height: auto;
 }
 
-/* 
-    HEADER — Top bar containing logo + categories + order button
- */
 .main-header {
     display: flex;
     justify-content: space-between;
@@ -54,14 +39,12 @@ body {
     border-bottom: 1px solid var(--border-color);
 }
 
-/* ------ Logo ------ */
 .main-header .logo {
     font-size: 3.5rem;
     font-weight: 600;
     color: var(--header-text-color);
 }
 
-/* ------ Category Navigation ------ */
 .category-nav {
     flex-grow: 1;
     display: flex;
@@ -85,14 +68,12 @@ body {
     color: var(--header-text-color);
 }
 
-.category-item:hover,
-.category-item.active {
+.category-item:hover, .category-item.active {
     background-color: var(--primary-color);
     color: white;
     border-color: var(--primary-color);
 }
 
-/* ------ View Order Button ------ */
 .view-order-btn {
     background-color: var(--primary-color);
     color: white;
@@ -126,14 +107,11 @@ body {
     font-size: 0.8rem;
 }
 
-/* 
-   MAIN CONTENT — Menu page, search bar, and sections
- */
+/* Main Content */
 .main-content {
     width: 100%;
 }
 
-/* ------ Menu Container ------ */
 .menu-container {
     padding: 30px;
 }
@@ -146,7 +124,6 @@ body {
     text-align: center;
 }
 
-/* ------ Search Bar ------ */
 .search-container {
     margin-bottom: 30px;
     text-align: center;
@@ -154,15 +131,14 @@ body {
 
 #search-bar {
     width: 100%;
-    max-width: 500px;
+    max-width: 500px; /* Added max-width to allow centering */
     padding: 15px;
     border-radius: 8px;
     border: 1px solid var(--border-color);
     font-size: 1rem;
-    margin: 0 auto;
+    margin: 0 auto; /* Added to center the input */
 }
 
-/* ------ Search Suggestions Dropdown ------ */
 .search-recommendations {
     position: absolute;
     width: 100%;
@@ -175,8 +151,8 @@ body {
     transform: translateX(-50%);
     margin-top: 5px;
     overflow: hidden;
-    display: none;
-    border: 1px solid var(--border-color);
+    display: none; /* Hidden by default, shown by JS */
+    border: 1px solid var(--border-color); /* Added border */
 }
 
 .recommendation-item {
@@ -195,15 +171,34 @@ body {
     background-color: #f0f0f0;
 }
 
+.recommendation-item-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 10px;
+}
 
-/*
-   MENU GRID — Cards displaying food/drink items
- */
+.recommendation-item-details {
+    flex-grow: 1;
+}
+
+.recommendation-item-name {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.recommendation-item-description {
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+}
+
 .menu-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 25px;
-    max-width: 1200px;
+    max-width: 1200px; /* Adjust as needed */
     margin: 0 auto;
 }
 
@@ -220,12 +215,79 @@ body {
 
 .menu-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 20px rgba(0,0,0,0.12);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
 }
 
-/*
-    MODAL OVERLAY — Background blur/dark overlay
- */
+.item-image {
+    height: 200px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.menu-item:hover .item-image img {
+    transform: scale(1.05);
+}
+
+.item-details {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: center; /* Added to center text content */
+}
+
+.item-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 8px;
+}
+
+.item-description {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    flex-grow: 1;
+    font-size: 0.9rem;
+}
+
+.item-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.item-price {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--primary-color);
+}
+
+.add-to-order {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: var(--transition);
+    font-size: 1rem;
+}
+
+.add-to-order:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+/* Overlay and Modal */
 .overlay {
     position: fixed;
     top: 0;
@@ -238,9 +300,20 @@ body {
     justify-content: center;
     z-index: 100;
 }
-/* 
-    9. ORDER PAGE — Cart / Checkout page
-*/
+
+#success-overlay {
+    z-index: 1000; /* Ensure it's on top of other overlays */
+    align-items: center;
+    justify-content: center;
+}
+
+.order-page, .modal {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    animation: slide-down-order 0.4s ease-out;
+}
+
 .order-page {
     width: 90%;
     max-width: 600px;
@@ -249,9 +322,242 @@ body {
     flex-direction: column;
 }
 
-/* 
-     SUCCESS MESSAGE — Confirmation popup after placing an order
-*/
+.order-header, .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.order-header h2, .modal-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.close-btn, .close-modal-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: red; /* Changed to red */
+}
+
+.order-items {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f3f5;
+}
+
+.order-item .item-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.order-item-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.item-details-order {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-details-order .item-name {
+    font-size: 1.1rem; /* Increased font size */
+}
+
+.item-details-order .item-price {
+    font-size: 1rem; /* Increased font size */
+}
+
+.item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.item-quantity .quantity {
+    font-size: 1rem; /* Increased font size */
+}
+
+.quantity-btn, .remove-btn {
+    background-color: #f1f3f5;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 8px 12px; /* Increased padding */
+    font-size: 1.1rem; /* Increased font size */
+}
+
+.remove-btn {
+    background-color: #f1f3f5;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+/* Order Details Form */
+.order-details-form {
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.order-details-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.order-details-form label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+.order-details-form input[type="text"] {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.order-details-form .payment-options {
+    display: flex;
+    gap: 15px;
+}
+
+.order-details-form .payment-options label {
+    font-weight: normal;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.order-details-form .payment-options input[type="radio"] {
+    /* Custom styling for radio buttons if needed */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.order-details-form .payment-options input[type="radio"]:checked::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    display: block;
+}
+
+.order-footer {
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total-amount {
+    font-size: 1.4rem; /* Increased font size */
+    font-weight: 600;
+}
+
+.checkout-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.modal {
+    width: 90%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-image img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+.modal-details {
+    padding: 25px;
+}
+
+.modal-description {
+    margin: 15px 0;
+    flex-grow: 1;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+.modal-price {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* Notification & Success Message */
+.notification {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    font-weight: 600;
+    transition: bottom 0.5s ease-in-out;
+    font-size: 1rem;
+}
+
+.notification.show {
+    bottom: 20px;
+}
+
 .success-message {
     display: none;
     position: fixed;
@@ -261,6 +567,71 @@ body {
     background-color: white;
     padding: 40px;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     text-align: center;
+    z-index: 200;
+    width: 90%;
+    max-width: 400px;
+    animation: slide-down 0.4s ease-out;
+}
+
+.success-icon {
+    font-size: 3rem;
+    color: white; /* Changed to white */
+    margin-bottom: 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #4CAF50; /* Changed to green */
+}
+
+.success-icon svg {
+    width: 50px;
+    height: 50px;
+}
+
+.success-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.success-text {
+    color: var(--secondary-color);
+    margin-bottom: 30px;
+}
+
+.back-to-menu-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.back-to-menu-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+@keyframes slide-down {
+    from {
+        transform: translate(-50%, -50%) translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%) translateY(0);
+        opacity: 1;
+    }
+}
+
+.blurred {
+    filter: blur(5px);
+    transition: filter 0.3s ease-in-out;
 }
