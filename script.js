@@ -422,18 +422,77 @@ function setupEventListeners() {
     });
 }
 
-// ===================== ORDER MANAGEMENT ==========
-// addToOrder(itemId)
-// - add/update item in current order
+// Add item to order
+function addToOrder(itemId) {
+    const menuItem = menuItems.find(item => item.id === itemId);
+    const existingOrderItem = currentOrder.find(item => item.id === itemId);
 
-// removeFromOrder(itemId)
-// - delete item from cart
+    if (existingOrderItem) {
+        existingOrderItem.quantity++;
+    } else {
+        currentOrder.push({ ...menuItem, quantity: 1 });
+    }
 
-// changeQuantity(itemId, amount)
-// - increase/decrease quantity of an item
+    updateOrderDisplay();
+    showNotification(`${menuItem.name} added to order!`);
+}
 
-// updateOrderDisplay()
-// - refresh cart UI and total price
+// Remove item from order
+function removeFromOrder(itemId) {
+    currentOrder = currentOrder.filter(item => item.id !== itemId);
+    updateOrderDisplay();
+}
+
+// Change item quantity in order
+function changeQuantity(itemId, change) {
+    const existingOrderItem = currentOrder.find(item => item.id === itemId);
+
+    if (existingOrderItem) {
+        existingOrderItem.quantity += change;
+        if (existingOrderItem.quantity <= 0) {
+            removeFromOrder(itemId);
+        } else {
+            updateOrderDisplay();
+        }
+    }
+}
+
+// Update order display
+function updateOrderDisplay() {
+    orderItemsContainer.innerHTML = '';
+    let total = 0;
+    let totalItems = 0;
+
+    if (currentOrder.length === 0) {
+        orderItemsContainer.innerHTML = '<div class="empty-order">Your order is empty.</div>';
+    } else {
+        currentOrder.forEach(item => {
+            const orderItemElement = document.createElement('div');
+            orderItemElement.className = 'order-item';
+            orderItemElement.innerHTML = `
+                <div class="item-info">
+                    <img src="${item.image}" alt="${item.name}" class="order-item-image">
+                    <div class="item-details-order">
+                        <div class="item-name">${item.name}</div>
+                        <div class="item-price">EGP ${(item.price * item.quantity).toFixed(2)}</div>
+                    </div>
+                </div>
+                <div class="item-quantity">
+                    <button class="quantity-btn decrease-quantity" data-id="${item.id}">-</button>
+                    <span class="quantity">${item.quantity}</span>
+                    <button class="quantity-btn increase-quantity" data-id="${item.id}">+</button>
+                    <button class="remove-btn" data-id="${item.id}">Remove</button>
+                </div>
+            `;
+            orderItemsContainer.appendChild(orderItemElement);
+            total += item.price * item.quantity;
+            totalItems += item.quantity;
+        });
+    }
+
+    totalAmountElement.textContent = `EGP ${total.toFixed(2)}`;
+    orderCount.textContent = totalItems;
+}
 
 // ===================== MODAL ======================
 // openModal(itemId)
