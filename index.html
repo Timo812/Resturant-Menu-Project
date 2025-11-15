@@ -6,10 +6,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- META TAGS -->
-    <!-- Title of the website -->
-    <!-- Link to Google Fonts -->
-    <!-- Link to external CSS file (Mo’men’s file) -->
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restaurant - Menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -24,11 +25,46 @@
         <!-- ================= MAIN CONTENT ============ -->
         <main class="main-content">
 
-            <!-- Search Bar Section -->
-            <!-- Search Recommendations Container -->
-
-            <!-- Menu Title -->
-            <!-- Menu Items Grid (auto-filled by JS) -->
+              <header class="main-header">
+                <h1 class="logo">Restaurant</h1>
+                <nav class="category-nav">
+                    <ul class="category-list">
+                        <li class="category-item active" data-category="specials">
+                            <i class="icon-star"></i> Specials
+                        </li>
+                        <li class="category-item" data-category="appetizers">
+                            <i class="icon-food"></i> Appetizers
+                        </li>
+                        <li class="category-item" data-category="mains">
+                            <i class="icon-food"></i> Main Courses
+                        </li>
+                        <li class="category-item" data-category="desserts">
+                            <i class="icon-food"></i> Desserts
+                        </li>
+                        <li class="category-item" data-category="drinks">
+                            <i class="icon-drink"></i> Drinks
+                        </li>
+                    </ul>
+                </nav>
+                <button class="view-order-btn" id="view-order-btn">
+                    <i class="icon-cart"></i>
+                    <span>View Your Order</span>
+                    <span class="order-count">0</span>
+                </button>
+            </header>
+            <div class="menu-container">
+                <div class="search-container">
+                    <input type="text" id="search-bar" placeholder="Search for a dish...">
+                </div>
+                <div class="search-recommendations" id="search-recommendations">
+                    <!-- Recommendations will be dynamically generated here -->
+                </div>
+                <h2 class="menu-title">Specials</h2>
+                <div class="menu-grid">
+                    <!-- Menu items will be dynamically generated here -->
+                </div>
+            </div>
+        
             
         </main>
 
