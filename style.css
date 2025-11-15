@@ -196,23 +196,48 @@ body {
 }
 
 
-/* ========== HEADER STYLES ========== */
-/* Logo styling */
-/* Navigation bar layout */
-/* Category buttons */
-/* Active / hover states */
+/*
+   MENU GRID — Cards displaying food/drink items
+ */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-/* ========== SEARCH BAR ========== */
-/* Input field styling */
-/* Recommendations dropdown */
-/* Recommendation item layout */
+.menu-item {
+    background-color: var(--card-bg);
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
 
-/* ========== MENU GRID ========== */
-/* Responsive grid layout */
-/* Menu card design */
-/* Hover animations */
-/* Image styling */
-/* Item name, description, price */
+.menu-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.12);
+}
+
+/*
+    MODAL OVERLAY — Background blur/dark overlay
+ */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
 
 /* ========== ORDER PAGE POPUP ========== */
 /* Overlay background */
