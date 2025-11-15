@@ -1,9 +1,19 @@
-/* ============================================= */
-/* =============== CSS TEMPLATE ================ */
-/* =============== Assigned to: Mo’men ========= */
-/* ============================================= */
+/* =========================================================
+   🔹 1. ROOT VARIABLES — Main design variables (colors, shadows, transitions)
+========================================================= */
+:root {
+    --primary-color: #8D6E63;
+    --secondary-color: #5D4037;
+    --background-color: #F5F5F5;
+    --header-bg: #3E2723;
+    --header-text-color: #FFFFFF;
+    --card-bg: #FFFFFF;
+    --text-color: #000000;
+    --border-color: #D7CCC8;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
+}
 
-/* ========== ROOT VARIABLES ========== */
 /* Colors, shadows, transitions, fonts */
 
 /* ========== GLOBAL RESETS ========== */
