@@ -238,31 +238,29 @@ body {
     justify-content: center;
     z-index: 100;
 }
+/* 
+    9. ORDER PAGE — Cart / Checkout page
+*/
+.order-page {
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
 
-/* ========== ORDER PAGE POPUP ========== */
-/* Overlay background */
-/* Popup container */
-/* Item list styling */
-/* Quantity buttons */
-/* Remove button */
-/* Table number input */
-/* Payment method radio buttons */
-
-/* ========== MODAL POPUP ========== */
-/* Full-screen overlay */
-/* Modal card styling */
-/* Close button */
-/* Modal content layout */
-
-/* ========== NOTIFICATION ========== */
-/* Toast message */
-/* Slide animation */
-
-/* ========== SUCCESS MESSAGE ========== */
-/* Success popup */
-/* Checkmark icon */
-/* Button styling */
-
-/* ========== ANIMATIONS ========== */
-/* slide-down */
-/* hover effects */
+/* 
+     SUCCESS MESSAGE — Confirmation popup after placing an order
+*/
+.success-message {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+}
