@@ -494,12 +494,37 @@ function updateOrderDisplay() {
     orderCount.textContent = totalItems;
 }
 
-// ===================== MODAL ======================
-// openModal(itemId)
-// - show item details
+// Open modal
+function openModal(itemId) {
+    const menuItem = menuItems.find(item => item.id === itemId);
+    modal.innerHTML = `
+        <div class="modal-image">
+            <img src="${menuItem.image}" alt="${menuItem.name}">
+        </div>
+        <div class="modal-details">
+            <h2 class="modal-name">${menuItem.name}</h2>
+            <p class="modal-description">${menuItem.description}</p>
+            <div class="modal-footer">
+                <span class="modal-price">EGP ${menuItem.price.toFixed(2)}</span>
+                <button class="add-to-order" data-id="${menuItem.id}">Add to Order</button>
+            </div>
+        </div>
+        <button class="close-modal-btn" id="close-modal-btn">×</button>
+    `;
+    modalOverlay.style.display = 'flex';
 
-// closeModal()
-// - close modal popup
+    document.getElementById('close-modal-btn').addEventListener('click', closeModal);
+    document.querySelector('#modal .add-to-order').addEventListener('click', (e) => {
+        const itemId = parseInt(e.target.dataset.id);
+        addToOrder(itemId);
+        closeModal(); // Close modal after adding to order
+    });
+}
+
+// Close modal
+function closeModal() {
+    modalOverlay.style.display = 'none';
+}
 
 // ===================== NOTIFICATIONS ==============
 // showNotification(message)
