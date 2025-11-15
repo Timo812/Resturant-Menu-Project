@@ -15,7 +15,7 @@
 }
 
 /* 
-   🔹 2. GLOBAL RESET — Reset default browser styles
+    GLOBAL RESET — Reset default browser styles
  */
 * {
     margin: 0;
@@ -25,7 +25,7 @@
 }
 
 /*
-   🔹 3. BODY STYLING — General page background & layout
+    BODY STYLING — General page background & layout
 */
 body {
     background: linear-gradient(to bottom right, #E0D8CC 0%, #90887E 65%, #50483E 100%);
@@ -33,10 +33,13 @@ body {
     min-height: 100vh;
 }
 
-
-/* ========== GLOBAL RESETS ========== */
-/* Reset margins, paddings, box-sizing */
-/* Set global font family */
+/* 
+     APP CONTAINER — Main application wrapper
+*/
+.app-container {
+    display: block;
+    height: auto;
+}
 
 /* ========== BODY STYLES ========== */
 /* Background */
