@@ -249,18 +249,178 @@ function init() {
     updateOrderDisplay();
 }
 
-// ===================== RENDER FUNCTIONS ==========
-// renderMenuItems(category)
-// - display menu items based on selected category
+// Render menu items
+function renderMenuItems(category) {
+    menuGrid.innerHTML = '';
+    let itemsToRender;
 
-// createMenuItemElement(item)
-// - generate HTML elements for each menu item
+    if (category === 'specials') {
+        itemsToRender = menuItems.filter(item => item.special);
+        menuTitle.textContent = "Today's Specials";
+    } else {
+        itemsToRender = menuItems.filter(item => item.category === category);
+        menuTitle.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+    }
 
-// displayRecommendations(query)
-// - show live search suggestions
+    itemsToRender.forEach(item => {
+        const menuItemElement = createMenuItemElement(item);
+        menuGrid.appendChild(menuItemElement);
+    });
+}
 
-// hideRecommendations()
-// - hide the dropdown list
+function renderFilteredItems(filteredItems) {
+    menuGrid.innerHTML = '';
+    filteredItems.forEach(item => {
+        const menuItemElement = createMenuItemElement(item);
+        menuGrid.appendChild(menuItemElement);
+    });
+}
+
+// Display search recommendations
+function displayRecommendations(query) {
+    searchRecommendationsContainer.innerHTML = '';
+    const filteredItems = menuItems.filter(item => {
+        return (
+            item.name.toLowerCase().includes(query) ||
+            item.description.toLowerCase().includes(query)
+        );
+    });
+
+    if (filteredItems.length > 0) {
+        searchRecommendationsContainer.style.display = 'block';
+        // mainHeader.classList.add('blurred'); // Removed blurred class from mainHeader
+        // menuContainer.classList.add('blurred'); // Removed blurred class from menuContainer
+        menuTitle.classList.add('blurred'); // Add blurred class to menuTitle
+        menuGrid.classList.add('blurred'); // Add blurred class to menuGrid
+        filteredItems.forEach(item => {
+            const recommendationItem = document.createElement('div');
+            recommendationItem.className = 'recommendation-item';
+            recommendationItem.dataset.id = item.id;
+            recommendationItem.innerHTML = `
+                <img src="${item.image}" alt="${item.name}" class="recommendation-item-image">
+                <div class="recommendation-item-details">
+                    <div class="recommendation-item-name">${item.name}</div>
+                    <div class="recommendation-item-description">${item.description}</div>
+                </div>
+            `;
+            recommendationItem.addEventListener('click', () => {
+                openModal(item.id); // Open modal when recommendation is clicked
+                hideRecommendations();
+                searchBar.value = ''; // Clear search bar
+            });
+            searchRecommendationsContainer.appendChild(recommendationItem);
+        });
+    } else {
+        hideRecommendations();
+    }
+}
+
+// Hide search recommendations
+function hideRecommendations() {
+    searchRecommendationsContainer.innerHTML = '';
+    searchRecommendationsContainer.style.display = 'none';
+    // mainHeader.classList.remove('blurred'); // Removed blurred class from mainHeader
+    // menuContainer.classList.remove('blurred'); // Removed blurred class from menuContainer
+    menuTitle.classList.remove('blurred'); // Remove blurred class from menuTitle
+    menuGrid.classList.remove('blurred'); // Remove blurred class from menuGrid
+}
+
+// Create a menu item element
+function createMenuItemElement(item) {
+    const menuItemElement = document.createElement('div');
+    menuItemElement.className = 'menu-item';
+    menuItemElement.dataset.id = item.id;
+    menuItemElement.innerHTML = `
+        <div class="item-image">
+            <img src="${item.image}" alt="${item.name}">
+        </div>
+        <div class="item-details">
+            <h2 class="item-name">${item.name}</h2>
+            <p class="item-description">${item.description}</p>
+            <div class="item-footer">
+                <span class="item-price">EGP ${item.price.toFixed(2)}</span>
+                <button class="add-to-order" data-id="${item.id}">Add to Order</button>
+            </div>
+        </div>
+    `;
+    return menuItemElement;
+}
+
+// Setup event listeners
+function setupEventListeners() {
+    categoryItems.forEach(item => {
+        item.addEventListener('click', () => {
+            categoryItems.forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+            const category = item.dataset.category;
+            renderMenuItems(category);
+            hideRecommendations(); // Hide recommendations when category changes
+        });
+    });
+
+    searchBar.addEventListener('keyup', (e) => {
+        const searchString = e.target.value.toLowerCase();
+        if (searchString.length > 0) {
+            displayRecommendations(searchString);
+        } else {
+            hideRecommendations();
+            renderMenuItems('specials'); // Or the currently active category
+        }
+    });
+
+    viewOrderBtn.addEventListener('click', () => {
+        orderPageOverlay.style.display = 'flex';
+    });
+
+    closeOrderBtn.addEventListener('click', () => {
+        orderPageOverlay.style.display = 'none';
+    });
+
+    menuGrid.addEventListener('click', (e) => {
+        if (e.target.classList.contains('add-to-order')) {
+            const itemId = parseInt(e.target.dataset.id);
+            addToOrder(itemId);
+        } else if (e.target.closest('.menu-item')) {
+            const itemId = parseInt(e.target.closest('.menu-item').dataset.id);
+            openModal(itemId);
+        }
+    });
+
+    modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) {
+            closeModal();
+        }
+    });
+
+    checkoutBtn.addEventListener('click', () => {
+        if (currentOrder.length === 0) {
+            alert('Your order is empty. Please add items before checking out.');
+        } else {
+            orderPageOverlay.style.display = 'none';
+            successOverlay.style.display = 'flex';
+            successMessage.style.display = 'block';
+        }
+    });
+
+    backToMenuBtn.addEventListener('click', () => {
+        successOverlay.style.display = 'none';
+        successMessage.style.display = 'none';
+        currentOrder = [];
+        updateOrderDisplay();
+    });
+
+    // Event delegation for remove and quantity change buttons in order pop-up
+    orderItemsContainer.addEventListener('click', (e) => {
+        const itemId = parseInt(e.target.dataset.id);
+        if (e.target.classList.contains('remove-btn')) {
+            removeFromOrder(itemId);
+        } else if (e.target.classList.contains('increase-quantity')) {
+            changeQuantity(itemId, 1);
+        } else if (e.target.classList.contains('decrease-quantity')) {
+            changeQuantity(itemId, -1);
+        }
+    });
+}
 
 // ===================== ORDER MANAGEMENT ==========
 // addToOrder(itemId)
