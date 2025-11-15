@@ -535,7 +535,6 @@ function showNotification(message) {
     }, 3000);
 }
 
-// ===================== CHECKOUT ===================
-// checkout process
-// show success message
-// reset order
+// Initialize the app
+init();
+
