@@ -68,25 +68,59 @@
             
         </main>
 
-        <!-- ============= ORDER PAGE POPUP ============ -->
-        <!-- Overlay -->
-        <!-- Order Details Container -->
-        <!-- Close Button -->
-        <!-- Items List Section -->
-        <!-- Table Number Input -->
-        <!-- Payment Method -->
-        <!-- Checkout Button -->
+       <!-- Order Page Overlay -->
+        <div class="overlay" id="order-page-overlay">
+            <div class="order-page">
+                <div class="order-header">
+                    <h2>Your Order</h2>
+                    <button class="close-btn" id="close-order-btn">×</button>
+                </div>
+                <div class="order-items">
+                    <!-- Order items will be dynamically generated here -->
+                </div>
+                <div class="order-details-form">
+                    <div class="form-group">
+                        <label for="seat-number">Table Number:</label>
+                        <input type="text" id="seat-number" placeholder="e.g., A12">
+                    </div>
+                    <div class="form-group">
+                        <label>Payment Method:</label>
+                        <div class="payment-options">
+                            <input type="radio" id="pay-card" name="payment-method" value="card" checked>
+                            <label for="pay-card">Card</label>
+                            <input type="radio" id="pay-cash" name="payment-method" value="cash">
+                            <label for="pay-cash">Cash</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-footer">
+                    <div class="total-amount">EGP 0.00</div>
+                    <button class="checkout-btn">Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
 
-        <!-- ============= ITEM MODAL POPUP ============ -->
         <!-- Modal Overlay -->
-        <!-- Modal Content Container -->
-        <!-- Close Modal Button -->
+        <div class="overlay" id="modal-overlay">
+            <div class="modal" id="modal">
+                <!-- Modal content will be dynamically generated here -->
+            </div>
+        </div>
 
-        <!-- ============ SUCCESS MESSAGE POPUP ========= -->
-        <!-- Success Overlay -->
-        <!-- Checkmark Icon -->
-        <!-- Success Text -->
-        <!-- Back to Menu Button -->
+        <!-- Notification Pop-up -->
+        <div id="notification" class="notification"></div>
+
+        <!-- Success Message Overlay -->
+        <div class="overlay" id="success-overlay">
+            <div class="success-message" id="success-message">
+                <div class="success-icon">
+                    &#10004;
+                </div>
+                <h2 class="success-title">Thank you for ordering</h2>
+                <p class="success-text">Your order has been placed successfully.</p>
+                <button class="back-to-menu-btn" id="back-to-menu">Back to Menu</button>
+            </div>
+        </div>
 
     </div>
 
