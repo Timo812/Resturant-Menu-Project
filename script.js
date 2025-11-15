@@ -526,9 +526,14 @@ function closeModal() {
     modalOverlay.style.display = 'none';
 }
 
-// ===================== NOTIFICATIONS ==============
-// showNotification(message)
-// - small toast at bottom
+// Show notification
+function showNotification(message) {
+    notification.textContent = message;
+    notification.classList.add('show');
+    setTimeout(() => {
+        notification.classList.remove('show');
+    }, 3000);
+}
 
 // ===================== CHECKOUT ===================
 // checkout process
