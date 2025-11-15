@@ -217,8 +217,30 @@ const menuItems = [
         image: "https://static.vecteezy.com/system/resources/previews/030/182/885/non_2x/a-cup-of-tea-on-a-wooden-table-ai-generated-free-photo.jpg"
     }
 ];
-// ===================== GLOBAL VARIABLES ==========
-// References to DOM elements (menu grid, search bar, overlays, popups)
+// Current order
+let currentOrder = [];
+
+// DOM Elements
+const menuGrid = document.querySelector('.menu-grid');
+const menuTitle = document.querySelector('.menu-title');
+const categoryItems = document.querySelectorAll('.category-item');
+const orderCount = document.querySelector('.order-count');
+const orderPageOverlay = document.getElementById('order-page-overlay');
+const orderItemsContainer = document.querySelector('.order-items');
+const totalAmountElement = document.querySelector('.total-amount');
+const closeOrderBtn = document.getElementById('close-order-btn');
+const viewOrderBtn = document.getElementById('view-order-btn');
+const modalOverlay = document.getElementById('modal-overlay');
+const modal = document.getElementById('modal');
+const notification = document.getElementById('notification');
+const successMessage = document.getElementById('success-message');
+const backToMenuBtn = document.getElementById('back-to-menu');
+const checkoutBtn = document.querySelector('.checkout-btn');
+const searchBar = document.getElementById('search-bar');
+const successOverlay = document.getElementById('success-overlay');
+const searchRecommendationsContainer = document.getElementById('search-recommendations');
+const menuContainer = document.querySelector('.menu-container');
+const mainHeader = document.querySelector('.main-header'); // Added
 
 // ===================== INITIALIZATION ============
 // init()
