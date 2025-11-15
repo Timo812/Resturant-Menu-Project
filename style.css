@@ -14,6 +14,15 @@
     --transition: all 0.3s ease;
 }
 
+/* =========================================================
+   🔹 2. GLOBAL RESET — Reset default browser styles
+========================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
 /* Colors, shadows, transitions, fonts */
 
 /* ========== GLOBAL RESETS ========== */
